@@ -1,0 +1,30 @@
+<div class="list-group mb-4 mt-4">
+
+    <div class="list-group-item bg-success text-white">
+        <h2 class="mb-0 fw-bold">{{ contact.name }}</h2>
+    </div>
+
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-12">
+                <p>Phone Number: {{contact.tel_number}} </p>
+            </div>
+            <div class="col-12">
+                <p>Email Address: {{contact.email_address}}</p>
+            </div>
+            <div class="col-12">
+                <p> Address: {{contact.address}} </p>
+            </div>
+            <div class="col-12">
+                <p>Profession: {{contact.profession}}</p>
+            </div>
+    </div>
+
+        <div class="d-flex justify-content-evenly mt-3">
+            <a class="btn btn-primary" onclick="editContact('{{contact.pk}}')">Edit</a>
+            <a class="btn btn-danger" onclick="deleteContact('{{contact.pk}}')">Delete</a>
+            <a class="btn btn-secondary" href="{% url 'home' %}">Close</a>
+        </div>
+
+    </div>
+</div>

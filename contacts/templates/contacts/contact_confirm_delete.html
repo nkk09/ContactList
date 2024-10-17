@@ -1,0 +1,33 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Confirm Delete</title>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <h1>Are you sure you want to delete "{{ contact.name }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete">
+        <a href="{% url 'contact_detail' contact.pk %}">Cancel</a>
+    </form>
+</body>
+</html> {% endcomment %}
+
+
+<div class="alert alert-danger mt-4" role="alert">
+    <h1>Are you sure you want to delete "{{ contact.name }}"?</h1>
+
+        <div class="d-flex justify-content-evenly mt-2">
+            <form method="post">
+                {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="Yes, delete">
+        <a class="btn btn-secondary" onclick="cancelDelete({{contact.pk}})">Cancel</a>
+    </form>
+
+        </div>
+</div>

@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+
+    <style>
+        body {
+            padding-top: 100px;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            position: fixed;
+            width: 20%;
+            top: 140px;
+            bottom: 0;
+            overflow-y: auto;
+            border-right: 2px solid #f0f0f0;
+            padding-top: 20px;
+        }
+        
+        .content-area {
+            padding: 20px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            margin-left: 20%;
+        }
+
+        .sidebar .list-group-item-action {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="bg-primary text-white text-center py-4 fixed-top">
+        <h1>Welcome to your contact list</h1>
+        <p>Keep a record of how you can reach your loved (or not) ones.</p>
+    </header>
+
+
+    <div class="container-fluid mt-4" id="non-header">
+        <div class="row">
+
+            <div class="col-md-3 sidebar">
+                <div class="list-group mb-4">
+                    <a class="btn btn-success" href='{% url 'contact_create' %}'>
+                        <i class="bi bi-plus-circle-fill" style="color: #ffffff"></i> Add new contact!
+                    </a>
+                </div>
+                <div class="list-group mb-4">
+                    <a class="list-group-item bg-secondary text-white">Your contacts:</a>
+                    <div class="contact-list">
+                        {% for contact in contacts %}
+                            <a class="list-group-item list-group-item-action" onclick="showContactDetail('{{ contact.pk }}')">
+                                <strong>{{ contact.name }}</strong> / {{ contact.tel_number }}
+                            </a>
+                        {% empty %}
+                            <a class="list-group-item list-group-item-action">No contacts to see.</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 content-area" id="contact-content">
+                <p class="mt-4">Select a contact from the left to see its details here!</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
