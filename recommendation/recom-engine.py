@@ -3,11 +3,18 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 import faiss
 import re
+from pathlib import Path
 
-# Load global assets
+current_dir = Path(__file__).parent.parent
+# cleaned_data_path = current_dir /"data" / "raw" / "cleaned_people_dataset.csv"
+processed_data_path = current_dir/"data"/"processed"/"processed_dataset.csv"
+# embeddings_data_path = current_dir/"recommendation"/"faiss_index"/"embeddings.npy"
+faiss_data_path = current_dir/"recommendation"/"faiss_index"/"faiss_index.index"
+
+
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
-index = faiss.read_index("faiss_index.index")
-df = pd.read_csv("processed_dataset.csv")
+index = faiss.read_index(str(faiss_data_path))
+df = pd.read_csv(str(processed_data_path))
 
 def extract_fees(prompt):
     """
@@ -45,12 +52,10 @@ def search_contacts(prompt, top_k=5):
     return results
 
 
-# Test a query
+# Test
 prompt = "Find me a lawyer in New York City under $500"
 embedding = model.encode([prompt])
 distances, indices = index.search(embedding, 5)
-
-# Display results
 results = df.iloc[indices[0]].copy()
 results['distance'] = distances[0]
 print(results)

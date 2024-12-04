@@ -2,36 +2,35 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import pandas as pd
 import faiss
+from pathlib import Path
 
-# Load the model
-model = SentenceTransformer('all-MiniLM-L6-v2')  # A small, efficient embedding model
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Load your dataset
-df = pd.read_csv(r"C:/Users/admin/OneDrive - American University of Beirut/Desktop/ContactList/recom-engine/cleaned_people_dataset.csv")
-print(df.head())  # Preview your data
+current_dir = Path(__file__).parent.parent
+cleaned_data_path = current_dir /"data" / "raw" / "cleaned_people_dataset.csv"
+processed_data_path = current_dir/"data"/"processed"/"processed_dataset.csv"
+embeddings_data_path = current_dir/"recommendation"/"faiss_index"/"embeddings.npy"
+faiss_data_path = current_dir/"recommendation"/"faiss_index"/"faiss_index.index"
 
-# Combine relevant fields into one text representation
+df = pd.read_csv(cleaned_data_path)
+
 df['combined'] = (
-    df['First Name'] + " " + df['Last Name'] + ", " +  # Name
+    df['First Name'] + " " + df['Last Name'] + ", " +
     df['Job Title'] + " in " + df['City'] + ", " + df['Country'] + ". " +
-    "Fees: $" + df['Fees'].astype(str)  # Fees
+    "Fees: $" + df['Fees'].astype(str)
 )
 
 # Generate embeddings for each entry
 embeddings = model.encode(df['combined'].tolist(), show_progress_bar=True)
-
-# Save embeddings for later use
-np.save("embeddings.npy", embeddings)  # Save as a .npy file
-df.to_csv("processed_dataset.csv", index=False)  # Save processed dataset
-
-# Load embeddings if you've saved them
-embeddings = np.load("embeddings.npy").astype('float32')
+np.save(str(embeddings_data_path), embeddings)
+df.to_csv(str(processed_data_path), index=False)
+embeddings = np.load(str(embeddings_data_path)).astype('float32')
 
 # Build FAISS index
-dimension = embeddings.shape[1]  # Embedding dimensions
-index = faiss.IndexFlatL2(dimension)  # L2 distance for similarity
-index.add(embeddings)  # Add embeddings to the index
+dimension = embeddings.shape[1]
+index = faiss.IndexFlatL2(dimension)
+index.add(embeddings)
+faiss.write_index(index, str(faiss_data_path))
 
-faiss.write_index(index, "faiss_index.index")  # Save the index file
-
-print(f"Index contains {index.ntotal} entries.")  # Verify
+# Verify eno 1000 entries
+print(f"Index contains {index.ntotal} entries.")
