@@ -50,7 +50,7 @@
 
     <header class="bg-primary text-white text-center py-4 fixed-top">
         <h1>Welcome to your contact list</h1>
-        <p>Keep a record of how you can reach your loved (or not) ones.</p>
+        <p>Keep a record on how you can reach your loved (or not) ones.</p>
     </header>
 
 
@@ -68,7 +68,7 @@
                     <div class="contact-list">
                         {% for contact in contacts %}
                             <a class="list-group-item list-group-item-action" onclick="showContactDetail('{{ contact.pk }}')">
-                                <strong>{{ contact.name }}</strong> / {{ contact.tel_number }}
+                                {% comment %} <strong>{{ contact.name }}</strong> / {{ contact.tel_number }} {% endcomment %}
                             </a>
                         {% empty %}
                             <a class="list-group-item list-group-item-action">No contacts to see.</a>
@@ -78,7 +78,16 @@
             </div>
 
             <div class="col-md-9 content-area" id="contact-content">
-                <p class="mt-4">Select a contact from the left to see its details here!</p>
+                <p class="mt-4">Select a contact from the left to see its details here! Or find new contacts:</p>
+                <div class="mb-4">
+                    <form id="recommendation-form" method="post" action="{% url 'recommend_contacts' %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="prompt" placeholder="Enter your search prompt (e.g., 'Find a lawyer in NYC')..." required>
+                            <button class="btn btn-primary" type="submit">Find</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>

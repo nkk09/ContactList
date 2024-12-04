@@ -3,7 +3,7 @@ from .forms import ContactForm
 from .models import Contact
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
+from recommendation.recom_engine import search_contacts
  
 def success(request):
     return render(request, 'contacts/success.html')
@@ -54,3 +54,11 @@ def contact_delete(request, pk):
         contact.delete()
         return redirect('home')
     return render(request, 'contacts/contact_confirm_delete.html', {'contact': contact})
+
+
+def recommend_contacts(request):
+    if request.method == "POST":
+        prompt = request.POST.get("prompt", "")
+        recommended_contacts = search_contacts(prompt)
+        return render(request, 'contacts/home.html', {'contacts': recommended_contacts})
+    return render(request, 'contacts/home.html', {'contacts': contacts})
