@@ -88,6 +88,20 @@
                         </div>
                     </form>
                 </div>
+                <div class="container mt-4">
+                    {% if recommended_contacts %}
+                        <h3>Recommended Contacts:</h3>
+                        <div class="list-group">
+                            {% for contact in recommended_contacts %}
+                                <a class="list-group-item">
+                                    <strong>{{ contact.first_name }} {{ contact.last_name }}</strong> / {{ contact.job_title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No contacts found matching your criteria.</p>
+                    {% endif %}
+                </div>
             </div>
 
         </div>
