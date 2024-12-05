@@ -1,9 +1,65 @@
 <form method="post" class="container mt-4">
     {% csrf_token %}
     <div class="mb-3 row">
-        <label for="name" class="col-sm-4 col-form-label text-end">Name:</label>
+        <label for="first_name" class="col-sm-4 col-form-label text-end">First Name:</label>
         <div class="col-sm-8">
-            {{ form.name }}
+            {{ form.first_name }} 
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="last_name" class="col-sm-4 col-form-label text-end">Last Name:</label>
+        <div class="col-sm-8">
+            {{ contact.last_name }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="sex" class="col-sm-4 col-form-label text-end">Sex:</label>
+        <div class="col-sm-8">
+            {{ form.sex }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="email" class="col-sm-4 col-form-label text-end">Email address:</label>
+        <div class="col-sm-8">
+            {{ form.email }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="phone" class="col-sm-4 col-form-label text-end">Phone number:</label>
+        <div class="col-sm-8">
+            {{ form.phone }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="date_of_birth" class="col-sm-4 col-form-label text-end">Date Of Birth:</label>
+        <div class="col-sm-8">
+            {{ form.date_of_birth }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="job_title" class="col-sm-4 col-form-label text-end">Job Title:</label>
+        <div class="col-sm-8">
+            {{ form.job_title }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="city" class="col-sm-4 col-form-label text-end">City:</label>
+        <div class="col-sm-8">
+            {{ form.city }}
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label for="country" class="col-sm-4 col-form-label text-end">Country:</label>
+        <div class="col-sm-8">
+            {{ form.country }}
         </div>
     </div>
 
@@ -15,23 +71,9 @@
     </div>
 
     <div class="mb-3 row">
-        <label for="profession" class="col-sm-4 col-form-label text-end">Profession:</label>
+        <label for="fees" class="col-sm-4 col-form-label text-end">Fees:</label>
         <div class="col-sm-8">
-            {{ form.profession }}
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label for="tel_number" class="col-sm-4 col-form-label text-end">Phone number:</label>
-        <div class="col-sm-8">
-            {{ form.tel_number }}
-        </div>
-    </div>
-
-    <div class="mb-3 row">
-        <label for="email_address" class="col-sm-4 col-form-label text-end">Email address:</label>
-        <div class="col-sm-8">
-            {{ form.email_address }}
+            {{ form.fees }}
         </div>
     </div>
 
