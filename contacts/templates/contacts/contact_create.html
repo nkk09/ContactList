@@ -46,88 +46,88 @@
             <form method="post" class="col-md-8 offset-md-2">
                 {% csrf_token %}
                 <div class="mb-3 row">
-                    <label for="first_name" class="col-sm-4 col-form-label text-end">First Name:</label>
+                    <label for="{{ form.first_name.id_for_label }}" class="col-sm-4 col-form-label text-end">First Name:</label>
                     <div class="col-sm-8">
-                        {{ form.first_name }} 
+                        {{ form.first_name }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="last_name" class="col-sm-4 col-form-label text-end">Last Name:</label>
+                    <label for="{{ form.last_name.id_for_label }}" class="col-sm-4 col-form-label text-end">Last Name:</label>
                     <div class="col-sm-8">
-                        {{ contact.last_name }}
+                        {{ form.last_name }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="sex" class="col-sm-4 col-form-label text-end">Sex:</label>
+                    <label for="{{ form.sex.id_for_label }}" class="col-sm-4 col-form-label text-end">Sex:</label>
                     <div class="col-sm-8">
                         {{ form.sex }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="email" class="col-sm-4 col-form-label text-end">Email address:</label>
+                    <label for="{{ form.email.id_for_label }}" class="col-sm-4 col-form-label text-end">Email address:</label>
                     <div class="col-sm-8">
                         {{ form.email }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="phone" class="col-sm-4 col-form-label text-end">Phone number:</label>
+                    <label for="{{ form.phone.id_for_label }}" class="col-sm-4 col-form-label text-end">Phone number:</label>
                     <div class="col-sm-8">
                         {{ form.phone }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="date_of_birth" class="col-sm-4 col-form-label text-end">Date Of Birth:</label>
+                    <label for="{{ form.date_of_birth.id_for_label }}" class="col-sm-4 col-form-label text-end">Date Of Birth:</label>
                     <div class="col-sm-8">
                         {{ form.date_of_birth }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="job_title" class="col-sm-4 col-form-label text-end">Job Title:</label>
+                    <label for="{{ form.job_title.id_for_label }}" class="col-sm-4 col-form-label text-end">Job Title:</label>
                     <div class="col-sm-8">
                         {{ form.job_title }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="city" class="col-sm-4 col-form-label text-end">City:</label>
+                    <label for="{{ form.city.id_for_label }}" class="col-sm-4 col-form-label text-end">City:</label>
                     <div class="col-sm-8">
                         {{ form.city }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="country" class="col-sm-4 col-form-label text-end">Country:</label>
+                    <label for="{{ form.country.id_for_label }}" class="col-sm-4 col-form-label text-end">Country:</label>
                     <div class="col-sm-8">
                         {{ form.country }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="address" class="col-sm-4 col-form-label text-end">Address:</label>
+                    <label for="{{ form.address.id_for_label }}" class="col-sm-4 col-form-label text-end">Address:</label>
                     <div class="col-sm-8">
                         {{ form.address }}
                     </div>
                 </div>
             
                 <div class="mb-3 row">
-                    <label for="fees" class="col-sm-4 col-form-label text-end">Fees:</label>
+                    <label for="{{ form.fees.id_for_label }}" class="col-sm-4 col-form-label text-end">Fees:</label>
                     <div class="col-sm-8">
                         {{ form.fees }}
                     </div>
                 </div>
-
+            
                 <div class="d-flex justify-content-between mt-4">
-                    <input type="submit" value="Add" class="btn btn-primary"/>
+                    <input type="submit" value="Add" class="btn btn-primary" />
                     <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
-
+            
         </div>
     </div>
 

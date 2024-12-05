@@ -17,7 +17,6 @@ class ContactForm(forms.ModelForm):
             'country',
             'address',
             'fees',
-            'combined',
         ]
     
     user_id = forms.CharField(max_length=200)
@@ -31,5 +30,4 @@ class ContactForm(forms.ModelForm):
     city = forms.CharField(max_length=200)
     country = forms.CharField(max_length=200)
     address = forms.CharField(widget=forms.Textarea)
-    fees = forms.DecimalField(max_digits=10, decimal_places=2)
-    combined = forms.CharField(widget=forms.Textarea)
+    fees = forms.DecimalField(max_digits=10, decimal_places=2, required=False)

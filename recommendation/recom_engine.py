@@ -53,10 +53,10 @@ def search_contacts(prompt, top_k=10):
     return results
 
 
-# Test
-prompt = "Find me a lawyer in New York City under $500"
-embedding = model.encode([prompt])
-distances, indices = index.search(embedding, 5)
-results = df.iloc[indices[0]].copy()
-results['distance'] = distances[0]
-print(results)
+# # Test
+# prompt = "Find me a lawyer in New York City under $500"
+# embedding = model.encode([prompt])
+# distances, indices = index.search(embedding, 5)
+# results = df.iloc[indices[0]].copy()
+# results['distance'] = distances[0]
+# print(results)

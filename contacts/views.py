@@ -32,7 +32,6 @@ def contact_create(request):
             country = formdata['country']
             address = formdata['address']
             fees = formdata['fees']
-            combined = formdata['combined']
             
             new_contact = Contact.objects.create(
                 user_id=user_id,
@@ -47,12 +46,12 @@ def contact_create(request):
                 country=country,
                 address=address,
                 fees=fees,
-                combined=combined
             )
             messages.success(request, 'Success! Your contact has been added.')
             return HttpResponseRedirect(reverse('home') + f'?new_contact_pk={new_contact.pk}&success=1')
     else:
         form = ContactForm()
+        print("Form is not valid")
     return render(request, 'contacts/contact_create.html', {'form': form})
 
 
