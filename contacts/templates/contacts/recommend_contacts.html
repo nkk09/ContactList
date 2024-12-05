@@ -89,20 +89,37 @@
                     </form>
                 </div>
                 <div class="container mt-4">
-                    {{ prompt }}
+                    <h4>Request:</h4>
+                    <p><em>{{ prompt }}</em></p>
+                    
                     {% if recommended_contacts %}
                         <h3>Recommended Contacts:</h3>
                         <div class="list-group">
                             {% for contact in recommended_contacts %}
-                                <a class="list-group-item">
-                                    <strong>{{ contact.first_name }} {{ contact.last_name }}</strong> / {{ contact.job_title }}
-                                </a>
+                                <div class="list-group-item">
+]                                    <p><strong>Name:</strong> {{ contact.first_name }} {{ contact.last_name }}</p>
+                                    <p><strong>Job Title:</strong> {{ contact.job_title }}</p>
+                                    <p><strong>Email:</strong> {{ contact.email }}</p>
+                                    <p><strong>Phone:</strong> {{ contact.phone }}</p>
+                                    <p><strong>City:</strong> {{ contact.city }}</p>
+                                    <p><strong>Country:</strong> {{ contact.country }}</p>
+                                    <p><strong>Address:</strong> {{ contact.address }}</p>
+                                    <p><strong>Fees:</strong> ${{ contact.fees }}</p>
+                
+                                    <!-- Save button -->
+                                    <form action="{% url 'save_contact' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="contact_data" value="{{ contact|json_script }}">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
                             {% endfor %}
                         </div>
                     {% else %}
                         <p>No contacts found matching your criteria.</p>
                     {% endif %}
                 </div>
+                
             </div>
 
         </div>

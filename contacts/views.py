@@ -4,6 +4,7 @@ from .models import Contact
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from recommendation.recom_engine import search_contacts
+import json
  
 def success(request):
     return render(request, 'contacts/success.html')
@@ -67,3 +68,23 @@ def recommend_contacts(request):
             'contacts': contacts,'recommended_contacts': recommended_contacts_list, 'prompt': prompt
             })
     return render(request, 'contacts/home.html', {'contacts': contacts})
+
+
+def save_contact(request):
+    if request.method == "POST":
+        contact_data = json.loads(request.POST.get('contact_data'))
+        Contact.objects.create(
+            user_id=contact_data['user_id'],
+            first_name=contact_data['first_name'],
+            last_name=contact_data['last_name'],
+            email=contact_data['email'],
+            phone=contact_data['phone'],
+            date_of_birth=contact_data['date_of_birth'],
+            job_title=contact_data['job_title'],
+            city=contact_data['city'],
+            country=contact_data['country'],
+            address=contact_data['address'],
+            fees=contact_data['fees']
+        )
+        
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

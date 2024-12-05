@@ -27,4 +27,5 @@ urlpatterns = [
     path('contact/<int:pk>/delete', views.contact_delete, name='contact_delete'),
     path('contact/create', views.contact_create, name='contact_create'),
     path('recommend_contacts', views.recommend_contacts, name="recommend_contacts"),
+    path('save_contact', views.save_contact, name="save_contact"),
 ]
