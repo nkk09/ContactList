@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 <body>
-    <h1>Are you sure you want to delete "{{ contact.name }}"?</h1>
+    <h1>Are you sure you want to delete "{{ contact.first_name }} {{ contact.last_name }}"?</h1>
     <form method="post">
         {% csrf_token %}
         <input type="submit" value="Yes, delete">
@@ -20,7 +20,7 @@
 
 
 <div class="alert alert-danger mt-4" role="alert">
-    <h1>Are you sure you want to delete "{{ contact.name }}"?</h1>
+    <h1>Are you sure you want to delete "{{ contact.first_name }} {{ contact.last_name }}"?</h1>
 
         <div class="d-flex justify-content-evenly mt-2">
             <form method="post">
