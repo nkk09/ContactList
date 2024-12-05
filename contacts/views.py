@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from recommendation.recom_engine import search_contacts
 import json
- 
+
 def success(request):
     return render(request, 'contacts/success.html')
 
@@ -93,20 +93,50 @@ def recommend_contacts(request):
     return render(request, 'contacts/home.html', {'contacts': contacts})
 
 
-def save_contact(request):
-    if request.method == "POST":
-        contact_data = json.loads(request.POST.get('contact_data'))
-        Contact.objects.create(
-            first_name=contact_data['first_name'],
-            last_name=contact_data['last_name'],
-            email=contact_data['email'],
-            phone=contact_data['phone'],
-            date_of_birth=contact_data['date_of_birth'],
-            job_title=contact_data['job_title'],
-            city=contact_data['city'],
-            country=contact_data['country'],
-            address=contact_data['address'],
-            fees=contact_data['fees']
-        )
+# def save_contact(request):
+#     if request.method == "POST":
+#         contact_data = json.loads(request.POST.get('contact_data'))
+#         Contact.objects.create(
+#             first_name=contact_data['first_name'],
+#             last_name=contact_data['last_name'],
+#             email=contact_data['email'],
+#             phone=contact_data['phone'],
+#             date_of_birth=contact_data['date_of_birth'],
+#             job_title=contact_data['job_title'],
+#             city=contact_data['city'],
+#             country=contact_data['country'],
+#             address=contact_data['address'],
+#             fees=contact_data['fees']
+#         )
         
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+
+# def save_contact(request):
+#     if request.method == 'POST':
+#         first_name = request.POST.get('first_name')
+#         last_name = request.POST.get('last_name')
+#         job_title = request.POST.get('job_title')
+#         email = request.POST.get('email')
+#         phone = request.POST.get('phone')
+#         city = request.POST.get('city')
+#         country = request.POST.get('country')
+#         address = request.POST.get('address')
+#         fees = request.POST.get('fees')
+
+#         Contact.objects.create(
+#             first_name=first_name,
+#             last_name=last_name,
+#             job_title=job_title,
+#             email=email,
+#             phone=phone,
+#             city=city,
+#             country=country,
+#             address=address,
+#             fees=fees
+#         )
+
+#         messages.success(request, 'Success! Your contact has been added.')
+#         return HttpResponseRedirect(reverse('home') + f'?new_contact_pk={new_contact.pk}&success=1')
+

@@ -20,10 +20,10 @@ class ContactForm(forms.ModelForm):
     
     first_name = forms.CharField(max_length=200)
     last_name = forms.CharField(max_length=200)
-    sex = forms.ChoiceField(choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+    sex = forms.ChoiceField(choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], required=False)
     email = forms.EmailField(max_length=254)
     phone = forms.CharField(max_length=20)
-    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
     job_title = forms.CharField(max_length=200)
     city = forms.CharField(max_length=200)
     country = forms.CharField(max_length=200)

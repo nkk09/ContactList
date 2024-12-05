@@ -91,12 +91,12 @@
                 <div class="container mt-4">
                     <h4>Request:</h4>
                     <p><em>{{ prompt }}</em></p>
-                    
+
                     {% if recommended_contacts %}
                         <h3>Recommended Contacts:</h3>
                         <div class="list-group">
                             {% for contact in recommended_contacts %}
-                                <div class="list-group-item">
+                                <div class="list-group-item mt-4">
                                     <p><strong>Name:</strong> {{ contact.first_name }} {{ contact.last_name }}</p>
                                     <p><strong>Job Title:</strong> {{ contact.job_title }}</p>
                                     <p><strong>Email:</strong> {{ contact.email }}</p>
@@ -105,13 +105,21 @@
                                     <p><strong>Country:</strong> {{ contact.country }}</p>
                                     <p><strong>Address:</strong> {{ contact.address }}</p>
                                     <p><strong>Fees:</strong> ${{ contact.fees }}</p>
-                
-                                    <form action="{% url 'save_contact' %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="contact_data" value="{{ contact|json_script }}">
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </form>
-                                </div>
+
+                <form action="{% url 'contact_create' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="first_name" value="{{ contact.first_name }}">
+                    <input type="hidden" name="last_name" value="{{ contact.last_name }}">
+                    <input type="hidden" name="job_title" value="{{ contact.job_title }}">
+                    <input type="hidden" name="email" value="{{ contact.email }}">
+                    <input type="hidden" name="phone" value="{{ contact.phone }}">
+                    <input type="hidden" name="city" value="{{ contact.city }}">
+                    <input type="hidden" name="country" value="{{ contact.country }}">
+                    <input type="hidden" name="address" value="{{ contact.address }}">
+                    <input type="hidden" name="fees" value="{{ contact.fees }}">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                                            </div>
                             {% endfor %}
                         </div>
                     {% else %}
