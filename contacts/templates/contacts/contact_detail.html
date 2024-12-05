@@ -1,14 +1,11 @@
 <div class="list-group mb-4 mt-4">
 
     <div class="list-group-item bg-success text-white">
-        <h2 class="mb-0 fw-bold">{{ contact.name }}</h2>
+        <h2 class="mb-0 fw-bold">{{contact.first_name}} {{contact.last_name}}</h2>
     </div>
 
     <div class="list-group-item">
         <div class="row">
-            <div class="col-12">
-                <p>Name: {{contact.first_name}} {{contact.last_name}}</p>
-            </div>
             <div class="col-12">
                 <p>Sex: {{contact.sex}}</p>
             </div>
@@ -21,29 +18,22 @@
             <div class="col-12">
                 <p>Date Of Birth: {{contact.date_of_birth}}</p>
             </div>
-            </div>
-                <div class="col-12">
+            <div class="col-12">
                 <p> Job: {{contact.job_title}} </p>
             </div>
-            </div>
-                 <div class="col-12">
+            <div class="col-12">
                 <p> City: {{contact.city}} </p>
             </div>
-            </div>
-                 <div class="col-12">
+            <div class="col-12">
                 <p> Country: {{contact.country}} </p>
             </div>
-            </div>
-                <div class="col-12">
+            <div class="col-12">
                 <p> Address: {{contact.address}} </p>
             </div>
-            </div>
-                <div class="col-12">
+            <div class="col-12">
                 <p> Fees: {{contact.fees}} </p>
             </div>
-
-    </div>
-
+        </div>
         <div class="d-flex justify-content-evenly mt-3">
             <a class="btn btn-primary" onclick="editContact('{{contact.pk}}')">Edit</a>
             <a class="btn btn-danger" onclick="deleteContact('{{contact.pk}}')">Delete</a>

@@ -68,7 +68,7 @@
                     <div class="contact-list">
                         {% for contact in contacts %}
                             <a class="list-group-item list-group-item-action" onclick="showContactDetail('{{ contact.pk }}')">
-                                {% comment %} <strong>{{ contact.name }}</strong> / {{ contact.tel_number }} {% endcomment %}
+                                <strong>{{ contact.first_name }} {{contact.last_name}}</strong> / {{ contact.phone }}
                             </a>
                         {% empty %}
                             <a class="list-group-item list-group-item-action">No contacts to see.</a>

@@ -20,7 +20,6 @@ def contact_create(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             formdata = form.cleaned_data
-            user_id = formdata['user_id']
             first_name = formdata['first_name']
             last_name = formdata['last_name']
             sex = formdata['sex']
@@ -34,7 +33,6 @@ def contact_create(request):
             fees = formdata['fees']
             
             new_contact = Contact.objects.create(
-                user_id=user_id,
                 first_name=first_name,
                 last_name=last_name,
                 sex=sex,
@@ -49,9 +47,12 @@ def contact_create(request):
             )
             messages.success(request, 'Success! Your contact has been added.')
             return HttpResponseRedirect(reverse('home') + f'?new_contact_pk={new_contact.pk}&success=1')
+        else:
+            print("Form is not valid")
+            print("Form Errors:", form.errors)
     else:
         form = ContactForm()
-        print("Form is not valid")
+
     return render(request, 'contacts/contact_create.html', {'form': form})
 
 
@@ -96,7 +97,6 @@ def save_contact(request):
     if request.method == "POST":
         contact_data = json.loads(request.POST.get('contact_data'))
         Contact.objects.create(
-            user_id=contact_data['user_id'],
             first_name=contact_data['first_name'],
             last_name=contact_data['last_name'],
             email=contact_data['email'],

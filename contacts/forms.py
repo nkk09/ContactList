@@ -5,7 +5,6 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = [
-            'user_id',
             'first_name',
             'last_name',
             'sex',
@@ -19,7 +18,6 @@ class ContactForm(forms.ModelForm):
             'fees',
         ]
     
-    user_id = forms.CharField(max_length=200)
     first_name = forms.CharField(max_length=200)
     last_name = forms.CharField(max_length=200)
     sex = forms.ChoiceField(choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
