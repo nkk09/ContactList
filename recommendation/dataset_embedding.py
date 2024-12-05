@@ -13,11 +13,11 @@ embeddings_data_path = current_dir/"recommendation"/"faiss_index"/"embeddings.np
 faiss_data_path = current_dir/"recommendation"/"faiss_index"/"faiss_index.index"
 
 df = pd.read_csv(cleaned_data_path)
-
+df.columns = df.columns.str.replace(' ', '_').str.lower()
 df['combined'] = (
-    df['First Name'] + " " + df['Last Name'] + ", " +
-    df['Job Title'] + " in " + df['City'] + ", " + df['Country'] + ". " +
-    "Fees: $" + df['Fees'].astype(str)
+    df['first_name'] + " " + df['last_name'] + ", " +
+    df['job_title'] + " in " + df['city'] + ", " + df['country'] + ". " +
+    "Fees: $" + df['fees'].astype(str)
 )
 
 # Generate embeddings for each entry

@@ -57,8 +57,13 @@ def contact_delete(request, pk):
 
 
 def recommend_contacts(request):
+    contacts = Contact.objects.all()
     if request.method == "POST":
         prompt = request.POST.get("prompt", "")
         recommended_contacts = search_contacts(prompt)
-        return render(request, 'contacts/home.html', {'contacts': recommended_contacts})
+        recommended_contacts_list = recommended_contacts.to_dict(orient="records")
+        print(recommended_contacts_list)
+        return render(request, 'contacts/recommend_contacts.html', {
+            'contacts': contacts,'recommended_contacts': recommended_contacts_list, 'prompt': prompt
+            })
     return render(request, 'contacts/home.html', {'contacts': contacts})

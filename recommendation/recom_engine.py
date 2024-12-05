@@ -16,6 +16,7 @@ model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 index = faiss.read_index(str(faiss_data_path))
 df = pd.read_csv(str(processed_data_path))
 
+
 def extract_fees(prompt):
     """
     Extract budget or fee range from the user's prompt using regex.

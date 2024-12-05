@@ -1,4 +1,4 @@
-Index,User Id,First Name,Last Name,Sex,Email,Phone,Date of birth,Job Title,City,Country,Address,Fees,combined
+index,user_id,first_name,last_name,sex,email,phone,date_of_birth,job_title,city,country,address,fees,combined
 1,8717bbf45cCDbEe,shelia,mahoney,Male,pwarner@example.org,857.139.8239,2014-01-27,probation officer,new arielfurt,dominican republic,"8951 main st, new arielfurt, dominican republic",,"shelia mahoney, probation officer in new arielfurt, dominican republic. Fees: $nan"
 2,3d5AD30A4cD38ed,jo,rivers,Female,fergusonkatherine@example.net,+1-950-759-8687,1931-07-26,dancer,tatemouth,lesotho,"4311 oak st, tatemouth, lesotho",,"jo rivers, dancer in tatemouth, lesotho. Fees: $nan"
 3,810Ce0F276Badec,sheryl,lowery,Female,fhoward@example.org,(599)782-0605,2013-11-25,copy,brandtshire,chad,"812 oak st, brandtshire, chad",,"sheryl lowery, copy in brandtshire, chad. Fees: $nan"
