@@ -85,7 +85,6 @@ def recommend_contacts(request):
     if request.method == "POST":
         prompt = request.POST.get("prompt", "")
         recommended_contacts = search_contacts(prompt)
-<<<<<<< HEAD
         recommended_contacts_list = recommended_contacts.to_dict(orient="records")
         print(recommended_contacts_list)
         return render(request, 'contacts/recommend_contacts.html', {
@@ -112,7 +111,3 @@ def save_contact(request):
         )
         
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-=======
-        return render(request, 'contacts/home.html', {'contacts': recommended_contacts})
-    return render(request, 'contacts/home.html', {'contacts': Contact.objects.all()})
->>>>>>> 29e063adb3ebdfd9f75a1eb6874c12e855b3652d
