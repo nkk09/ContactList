@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'contactlist.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/site/db.sqlite3',
+        'NAME': BASE_DIR/'db.sqlite3',
     }
 }
 
@@ -128,7 +128,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "contacts/static",
 ]
 
-STATIC_ROOT = '/home/site/wwwroot/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 
 # Default primary key field type
