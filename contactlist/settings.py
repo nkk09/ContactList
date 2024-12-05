@@ -30,6 +30,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'contactlistnkk09oha12erk06.azurewebsites.net']
 
+CSRF_TRUSTED_ORIGINS = ['https://contactlistnkk09oha12erk06.azurewebsites.net']
+
 
 # Application definition
 
