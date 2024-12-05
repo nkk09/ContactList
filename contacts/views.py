@@ -19,17 +19,40 @@ def contact_create(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             formdata = form.cleaned_data
-            name = formdata['name']
+            user_id = formdata['user_id']
+            first_name = formdata['first_name']
+            last_name = formdata['last_name']
+            sex = formdata['sex']
+            email = formdata['email']
+            phone = formdata['phone']
+            date_of_birth = formdata['date_of_birth']
+            job_title = formdata['job_title']
+            city = formdata['city']
+            country = formdata['country']
             address = formdata['address']
-            profession = formdata['profession']
-            tel_number = formdata['tel_number']
-            email_address = formdata['email_address']
-            new_contact = Contact.objects.create(name=name, address=address,  profession=profession, tel_number=tel_number, email_address=email_address)
+            fees = formdata['fees']
+            combined = formdata['combined']
+            
+            new_contact = Contact.objects.create(
+                user_id=user_id,
+                first_name=first_name,
+                last_name=last_name,
+                sex=sex,
+                email=email,
+                phone=phone,
+                date_of_birth=date_of_birth,
+                job_title=job_title,
+                city=city,
+                country=country,
+                address=address,
+                fees=fees,
+                combined=combined
+            )
             messages.success(request, 'Success! Your contact has been added.')
             return HttpResponseRedirect(reverse('home') + f'?new_contact_pk={new_contact.pk}&success=1')
     else:
-        form = ContactForm()  
-        return render(request, 'contacts/contact_create.html', {'form':form})
+        form = ContactForm()
+    return render(request, 'contacts/contact_create.html', {'form': form})
 
 
 def contact_detail(request, pk):
@@ -61,4 +84,4 @@ def recommend_contacts(request):
         prompt = request.POST.get("prompt", "")
         recommended_contacts = search_contacts(prompt)
         return render(request, 'contacts/home.html', {'contacts': recommended_contacts})
-    return render(request, 'contacts/home.html', {'contacts': contacts})
+    return render(request, 'contacts/home.html', {'contacts': Contact.objects.all()})
