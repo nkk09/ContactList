@@ -24,7 +24,7 @@ def extract_fees(prompt):
     match = re.search(r'\$(\d+)', prompt)
     return int(match.group(1)) if match else None
 
-def search_contacts(prompt, top_k=5):
+def search_contacts(prompt, top_k=10):
     """
     Search for contacts matching the user's prompt.
 
