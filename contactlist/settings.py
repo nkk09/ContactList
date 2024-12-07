@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
+
+
 
 
 
@@ -23,12 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-539fpr$+7hwjig0nb@+far(2_yei!engc$effvxe-43e&hbn0f'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS += config('ALLOWED_HOSTS', default='').split(',')
+
 
 
 # Application definition
@@ -42,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'contacts.apps.ContactsConfig',
     'bootstrap5',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -86,6 +92,12 @@ DATABASES = {
 }
 
 
+# # Azure
+# AZURE_ACCOUNT_NAME = config('AZURE_ACCOUNT_NAME')
+# AZURE_ACCOUNT_KEY = config('AZURE_ACCOUNT_KEY')
+# AZURE_CONTAINER_NAME = config('AZURE_CONTAINER_NAME', default='static')
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -120,8 +132,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-
+# STATIC_URL = f'https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_CONTAINER_NAME}/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "contacts/static",
 ]
@@ -130,3 +142,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# STATICFILES_STORAGE = 'storages.backends.azure_storage.AzureStorage'
