@@ -78,4 +78,5 @@ jobs:
         with:
           app-name: 'Contactsnkoaek'
           # slot-name: 'Production'
-          
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
