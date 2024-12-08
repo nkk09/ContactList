@@ -20,6 +20,8 @@ jobs:
       - name: Set SECRET_KEY
         run: echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
 
+      - name: Set WEBSITE_HOSTNAME environment variable
+        run: echo "WEBSITE_HOSTNAME=${{ secrets.WEBSITE_HOSTNAME }}" >> $GITHUB_ENV
 
       - name: Set up Python version
         uses: actions/setup-python@v5
